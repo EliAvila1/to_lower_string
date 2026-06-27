@@ -14,13 +14,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Alire & GNAT
+    - name: Setup Alire, GNAT & SPARK
       uses: alire-project/setup-alire@v3
       with:
         cache: true
-
-    - name: Install SPARK tools
-      run: alr toolchain --select gnatprove
+        extra-tools: gnatprove
 
     - name: Verify with SPARK (Level 4)
       run: alr exec -- gnatprove -P to_lower_string.gpr --level=4
