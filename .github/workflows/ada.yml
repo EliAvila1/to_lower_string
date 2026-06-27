@@ -20,4 +20,4 @@ jobs:
         cache: true
 
     - name: Verify with SPARK (Level 4)
-      run: alr exec -- gnatprove -P to_lower_string.gpr --level=4
+      run: alr exec -- gnatprove -P to_lower_string.gpr --level=4 --mode=all
