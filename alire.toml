@@ -1,0 +1,10 @@
+name = "to_lower_string"
+description = "A SPARK level 4 verified string to_lower utility"
+version = "0.1.0-dev"
+
+authors = ["Private"]
+maintainers = ["Private <tumdespt@protonmail.com>"]
+maintainers-logins = ["EliAvila1"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = ["spark", "string", "utility", "text", "verification"]
