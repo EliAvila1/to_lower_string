@@ -14,10 +14,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Install SPARK and GNAT Toolkit via Ubuntu
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y gnat gprbuild gnatprove
+    - name: Setup Alire & GNAT
+      uses: alire-project/setup-alire@v3
+      with:
+        cache: true
 
-    - name: Verify with SPARK (Level 4)
-      run: gnatprove -P to_lower_string.gpr --level=4 --mode=all
+    - name: Verify SPARK Code
+      run: alr build --validation
