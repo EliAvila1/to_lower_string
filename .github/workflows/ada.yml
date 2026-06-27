@@ -1,4 +1,4 @@
-name: Ada (GNAT con Alire)
+    name: Ada (SPARK Verification con Alire)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,9 +17,10 @@ jobs:
     - name: Setup Alire & GNAT
       uses: alire-project/setup-alire@v3
       with:
-        # Esto guarda en caché el compilador para que las próximas compilaciones sean superrápidas
-        cache: true 
+        cache: true
 
-    - name: Build with Alire
-      run: alr build
-    
+    - name: Install SPARK tools
+      run: alr toolchain --select gnatprove
+
+    - name: Verify with SPARK (Level 4)
+      run: alr exec -- gnatprove -P to_lower_string.gpr --level=4
