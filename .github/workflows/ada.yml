@@ -1,0 +1,25 @@
+name: Ada (GNAT con Alire)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Alire & GNAT
+      uses: alire-project/setup-alire@v3
+      with:
+        # Esto guarda en caché el compilador para que las próximas compilaciones sean superrápidas
+        cache: true 
+
+    - name: Build with Alire
+      run: alr build
+    
