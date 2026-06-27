@@ -1,4 +1,4 @@
-name: Ada (SPARK Verification con Alire)
+name: Ada Build (GPRbuild con Main)
 
 on:
   push:
@@ -7,17 +7,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-  verify:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Alire & GNAT
-      uses: alire-project/setup-alire@v3
-      with:
-        cache: true
+    - name: Instalar GNAT y GPRbuild
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gnat gprbuild
 
-    - name: Verify SPARK Code
-      run: alr build --validation
+    - name: Compilar Proyecto
+      run: gprbuild -P colors_table.gpr
